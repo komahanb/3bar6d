@@ -44,9 +44,9 @@ subroutine threebarf(fctindx,dat,x,f)
   pv=P*sin(theta)
 
   
-!  if(fctindx.gt.0) then
+  if(fctindx.gt.0) then
      
-!     if (fctindx.le.6) then ! evaluate stresses alone
+     if (fctindx.le.6) then ! evaluate stresses alone
 
         sigma(1)=(E*sin(phi(1))*((Pu*(X(1)*L(2)*L(3)*cos(phi(1))**2.0 + X(2)*L(1)*L(3)*cos(phi(2))**2.0 + X(3)*L(1)*L(2)*cos(phi(3))**2.0))/(X(1)*X(2)*E*L(3)*cos(phi(1))**2.0*sin(phi(2))**2.0 + X(1)*X(2)*E*L(3)*cos(phi(2))**2.0*sin(phi(1))**2.0 + X(1)*X(3)*E*L(2)*cos(phi(1))**2.0*sin(phi(3))**2.0 + X(1)*X(3)*E*L(2)*cos(phi(3))**2.0*sin(phi(1))**2.0 + X(2)*X(3)*E*L(1)*cos(phi(2))**2.0*sin(phi(3))**2.0 + X(2)*X(3)*E*L(1)*cos(phi(3))**2.0*sin(phi(2))**2.0 - 2.0*X(1)*X(2)*E*L(3)*cos(phi(1))*cos(phi(2))*sin(phi(1))*sin(phi(2)) - 2.0*X(1)*X(3)*E*L(2)*cos(phi(1))*cos(phi(3))*sin(phi(1))*sin(phi(3)) - 2.0*X(2)*X(3)*E*L(1)*cos(phi(2))*cos(phi(3))*sin(phi(2))*sin(phi(3))) - (Pv*(X(1)*L(2)*L(3)*cos(phi(1))*sin(phi(1)) + X(2)*L(1)*L(3)*cos(phi(2))*sin(phi(2)) + X(3)*L(1)*L(2)*cos(phi(3))*sin(phi(3))))/(X(1)*X(2)*E*L(3)*cos(phi(1))**2.0*sin(phi(2))**2.0 + X(1)*X(2)*E*L(3)*cos(phi(2))**2.0*sin(phi(1))**2.0 + X(1)*X(3)*E*L(2)*cos(phi(1))**2.0*sin(phi(3))**2.0 + X(1)*X(3)*E*L(2)*cos(phi(3))**2.0*sin(phi(1))**2.0 + X(2)*X(3)*E*L(1)*cos(phi(2))**2.0*sin(phi(3))**2.0 + X(2)*X(3)*E*L(1)*cos(phi(3))**2.0*sin(phi(2))**2.0 - 2.0*X(1)*X(2)*E*L(3)*cos(phi(1))*cos(phi(2))*sin(phi(1))*sin(phi(2)) - 2.0*X(1)*X(3)*E*L(2)*cos(phi(1))*cos(phi(3))*sin(phi(1))*sin(phi(3)) - 2.0*X(2)*X(3)*E*L(1)*cos(phi(2))*cos(phi(3))*sin(phi(2))*sin(phi(3)))))/L(1) + (E*cos(phi(1))*((Pv*(X(1)*L(2)*L(3)*sin(phi(1))**2.0 + X(2)*L(1)*L(3)*sin(phi(2))**2.0 + X(3)*L(1)*L(2)*sin(phi(3))**2.0))/(X(1)*X(2)*E*L(3)*cos(phi(1))**2.0*sin(phi(2))**2.0 + X(1)*X(2)*E*L(3)*cos(phi(2))**2.0*sin(phi(1))**2.0 + X(1)*X(3)*E*L(2)*cos(phi(1))**2.0*sin(phi(3))**2.0 + X(1)*X(3)*E*L(2)*cos(phi(3))**2.0*sin(phi(1))**2.0 + X(2)*X(3)*E*L(1)*cos(phi(2))**2.0*sin(phi(3))**2.0 + X(2)*X(3)*E*L(1)*cos(phi(3))**2.0*sin(phi(2))**2.0 - 2.0*X(1)*X(2)*E*L(3)*cos(phi(1))*cos(phi(2))*sin(phi(1))*sin(phi(2)) - 2.0*X(1)*X(3)*E*L(2)*cos(phi(1))*cos(phi(3))*sin(phi(1))*sin(phi(3)) - 2.0*X(2)*X(3)*E*L(1)*cos(phi(2))*cos(phi(3))*sin(phi(2))*sin(phi(3))) - (Pu*(X(1)*L(2)*L(3)*cos(phi(1))*sin(phi(1)) + X(2)*L(1)*L(3)*cos(phi(2))*sin(phi(2)) + X(3)*L(1)*L(2)*cos(phi(3))*sin(phi(3))))/(X(1)*X(2)*E*L(3)*cos(phi(1))**2.0*sin(phi(2))**2.0 + X(1)*X(2)*E*L(3)*cos(phi(2))**2.0*sin(phi(1))**2.0 + X(1)*X(3)*E*L(2)*cos(phi(1))**2.0*sin(phi(3))**2.0 + X(1)*X(3)*E*L(2)*cos(phi(3))**2.0*sin(phi(1))**2.0 + X(2)*X(3)*E*L(1)*cos(phi(2))**2.0*sin(phi(3))**2.0 + X(2)*X(3)*E*L(1)*cos(phi(3))**2.0*sin(phi(2))**2.0 - 2.0*X(1)*X(2)*E*L(3)*cos(phi(1))*cos(phi(2))*sin(phi(1))*sin(phi(2)) - 2.0*X(1)*X(3)*E*L(2)*cos(phi(1))*cos(phi(3))*sin(phi(1))*sin(phi(3)) - 2.0*X(2)*X(3)*E*L(1)*cos(phi(2))*cos(phi(3))*sin(phi(2))*sin(phi(3)))))/L(1)
 
@@ -57,7 +57,7 @@ subroutine threebarf(fctindx,dat,x,f)
 
 
         sigma(:)=sigma(:)*Fs
-!     else ! evaluate u and v
+     else ! evaluate u and v
 
         u= (Pu*(X(1)*L(2)*L(3)*cos(phi(1))**2.0 + X(2)*L(1)*L(3)*cos(phi(2))**2.0 + X(3)*L(1)*L(2)*cos(phi(3))**2.0))/(X(1)*X(2)*E*L(3)*cos(phi(1))**2.0*sin(phi(2))**2.0 + X(1)*X(2)*E*L(3)*cos(phi(2))**2.0*sin(phi(1))**2.0 + X(1)*X(3)*E*L(2)*cos(phi(1))**2.0*sin(phi(3))**2.0 + X(1)*X(3)*E*L(2)*cos(phi(3))**2.0*sin(phi(1))**2.0 + X(2)*X(3)*E*L(1)*cos(phi(2))**2.0*sin(phi(3))**2.0 + X(2)*X(3)*E*L(1)*cos(phi(3))**2.0*sin(phi(2))**2.0 - 2.0*X(1)*X(2)*E*L(3)*cos(phi(1))*cos(phi(2))*sin(phi(1))*sin(phi(2)) - 2.0*X(1)*X(3)*E*L(2)*cos(phi(1))*cos(phi(3))*sin(phi(1))*sin(phi(3)) - 2.0*X(2)*X(3)*E*L(1)*cos(phi(2))*cos(phi(3))*sin(phi(2))*sin(phi(3))) - (Pv*(X(1)*L(2)*L(3)*cos(phi(1))*sin(phi(1)) + X(2)*L(1)*L(3)*cos(phi(2))*sin(phi(2)) + X(3)*L(1)*L(2)*cos(phi(3))*sin(phi(3))))/(X(1)*X(2)*E*L(3)*cos(phi(1))**2.0*sin(phi(2))**2.0 + X(1)*X(2)*E*L(3)*cos(phi(2))**2.0*sin(phi(1))**2.0 + X(1)*X(3)*E*L(2)*cos(phi(1))**2.0*sin(phi(3))**2.0 + X(1)*X(3)*E*L(2)*cos(phi(3))**2.0*sin(phi(1))**2.0 + X(2)*X(3)*E*L(1)*cos(phi(2))**2.0*sin(phi(3))**2.0 + X(2)*X(3)*E*L(1)*cos(phi(3))**2.0*sin(phi(2))**2.0 - 2.0*X(1)*X(2)*E*L(3)*cos(phi(1))*cos(phi(2))*sin(phi(1))*sin(phi(2)) - 2.0*X(1)*X(3)*E*L(2)*cos(phi(1))*cos(phi(3))*sin(phi(1))*sin(phi(3)) - 2.0*X(2)*X(3)*E*L(1)*cos(phi(2))*cos(phi(3))*sin(phi(2))*sin(phi(3)))
 
@@ -66,19 +66,19 @@ subroutine threebarf(fctindx,dat,x,f)
         u=u*Fs
         v=v*Fs
 
-!     end if
+     end if
 
-!  end if
+  end if
   
 
 
-      print*,''
-      print*,'u      :',u
-      print*,'v      :',v
-      print*,'sigma1 :',sigma(1)
-      print*,'sigma2 :',sigma(2)
-      print*,'sigma3 :',sigma(3)
-      print*,''
+!!$      print*,''
+!!$      print*,'u      :',u
+!!$      print*,'v      :',v
+!!$      print*,'sigma1 :',sigma(1)
+!!$      print*,'sigma2 :',sigma(2)
+!!$      print*,'sigma3 :',sigma(3)
+!!$      print*,''
 
 
 

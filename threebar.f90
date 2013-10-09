@@ -88,13 +88,13 @@ program Threebar
 !!! Max constraint values
 
   !Tensile
-  dat(6)=2000.0    ! psi tensile_sigma1_max=dat(6)      
-  dat(7)=2000.0    ! psi tensile_sigma2_max=dat(7)
-  dat(8)=2000.0    ! psi tensile_sigma3_max=dat(8)
+  dat(6)=5000.0    ! psi tensile_sigma1_max=dat(6)      
+  dat(7)=20000.0    ! psi tensile_sigma2_max=dat(7)
+  dat(8)=5000.0    ! psi tensile_sigma3_max=dat(8)
   !Compressive
-  dat(9)=2000.0    ! psi comp_sigma1_max=dat(9)
-  dat(10)=2000.0   ! psi comp_sigma2_max=dat(10)
-  dat(11)=2000.0   ! psi comp_sigma3_max=dat(11)
+  dat(9)=5000.0    ! psi comp_sigma1_max=dat(9)
+  dat(10)=20000.0   ! psi comp_sigma2_max=dat(10)
+  dat(11)=5000.0   ! psi comp_sigma3_max=dat(11)
   !Displacement
   dat(12)=0.005    ! in  max_u_disp=dat(12)
   dat(13)=0.005    ! in  max_v_disp=dat(12)
@@ -104,7 +104,7 @@ program Threebar
 
   do i=1,N-3
      X(i)   = 1.0  
-     X_L(i) = 0.1 
+     X_L(i) = 0.25 
      X_U(i) = infbound 
   end do
 
@@ -262,6 +262,8 @@ end program Threebar
       integer IERR
 
       call threebarf(0,dat,x,F)
+          print *,' >> Obj:'
+          print*,F
      
       IERR = 0
 
@@ -281,9 +283,16 @@ end program Threebar
       double precision DAT(*)
       integer IDAT(*)
       integer IERR
-      
-      call threebardf(0,dat,x,grad)
 
+      call threebardf(0,dat,x,grad)
+      print *,' >> Gradient of obj:'
+
+      do i=1,n
+         print*,grad(i)
+
+      end do
+
+      
       IERR = 0
 
       return
@@ -665,7 +674,6 @@ end program Threebar
       end if
 
       write(*,'(i5,5e15.7)') ITER_COUNT,OBJVAL,DNORM,INF_PR,INF_DU,MU
-      if (ITER_COUNT .gt. 1 .and. DNORM.le.1D-10) ISTOP = 1
 
       return
     end subroutine ITER_CB
