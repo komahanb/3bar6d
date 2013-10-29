@@ -104,7 +104,7 @@ program Threebar
 
   do i=1,N-3
      X(i)   = 1.0  
-     X_L(i) = 0.25 
+     X_L(i) = 0.0 
      X_U(i) = infbound 
   end do
 
@@ -540,6 +540,9 @@ end program Threebar
          A(47)=cgrad(8,5)
          A(48)=cgrad(8,6)
 
+         print*,''
+         print*,'dg7/dx:',cgrad(7,:)
+         print*,''
       end if
 
       IERR = 0
