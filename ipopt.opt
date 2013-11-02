@@ -24,4 +24,4 @@ max_cpu_time 1.d10
 hessian_approximation limited-memory
 
 # Maximum size of the history for the limited quasi-Newton
-limited_memory_max_history 60
+limited_memory_max_history    60
